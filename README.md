@@ -65,3 +65,12 @@ This pass is intended to change the *production value*, not just tweak the old c
 
 ## Important limitation
 This is still a lightweight browser simulator. Microsoft Flight Simulator 2024 uses streamed world imagery, photogrammetry, large PBR asset libraries, advanced weather/atmosphere simulation, detailed avionics and aircraft-specific aerodynamic data. Skybound does not reproduce those systems, but this build moves the game toward the visual language and operational feel of a commercial flight simulator while staying deployable as a static GitHub Pages project.
+
+## Studio Reboot controls
+- Drag directly on the 3D world in Chase or Orbit view to move the camera around the aircraft.
+- Mouse wheel / trackpad scroll changes camera distance.
+- Double-click the 3D world to reset the camera angle.
+- Roll and yaw controls have been retuned for significantly quicker, less stubborn turns.
+
+## Visual reboot
+This build also replaces the pale airport look with darker concrete/asphalt, visible concrete panel joints and apron wear, richer terrain, stronger terminal glass/metal contrast, and a lower-angle cinematic daylight setup.

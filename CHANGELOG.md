@@ -16,3 +16,12 @@
 - premium menu/HUD styling pass
 - atmosphere and camera refinements
 - retained prior flight-model realism and faster AI traffic flow
+
+## Studio Reboot v2
+- Added free drag camera to Chase, Orbit, and the ready-screen aircraft view.
+- Added camera zoom and double-click reset.
+- Increased roll authority, maximum bank, rudder response, and turn response.
+- Reduced control lag so the JX-200 responds sooner to directional inputs.
+- Reworked daylight, fog, sky gradient, and terrain palette.
+- Darkened/rebalanced airport materials and terminal glazing.
+- Added apron concrete-panel joints, wear/stains, and stronger stand-area markings.

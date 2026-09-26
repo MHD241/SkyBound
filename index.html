@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Skybound — Real Assets Edition</title>
   <meta name="description" content="Skybound 3D flight simulator with real aircraft and airport GLB assets." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
   <link rel="stylesheet" href="./assets/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23081720'/><path d='M8 35 55 14 38 50 31 37 8 35Z' fill='%23baf06f'/></svg>">
 </head>
 <body>
   <div id="app"></div>
-  <div id="loading"><div class="loader-card"><div class="logo">SKYBOUND</div><div class="sub">REAL ASSETS EDITION</div><div class="bar"><span id="loadbar"></span></div><div id="loadtext">Starting Skybound… high-detail models will stream in after the scene appears</div></div></div>
+  <div id="loading" style="display:none"><div class="loader-card"><div class="logo">SKYBOUND</div><div class="sub">REAL ASSETS EDITION</div><div class="bar"><span id="loadbar"></span></div><div id="loadtext">Starting Skybound… high-detail models will stream in after the scene appears</div></div></div>
   <header class="topbar">
     <div class="brand"><div class="mark">✈</div><div><b>SKYBOUND</b><small>REAL ASSETS EDITION</small></div></div>
     <div class="airport"><span class="dot"></span> NORTHPOINT INTERNATIONAL <i>RWY 36</i></div>
@@ -36,6 +38,8 @@
   </div>
 
   <div class="status" id="status">Drag anywhere to orbit · mouse wheel to zoom · double-click to reset view</div>
+  <script>document.documentElement.classList.add('ui-ready');</script>
   <script type="module" src="./assets/app.js"></script>
+  <script>if('serviceWorker' in navigator) addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));</script>
 </body>
 </html>

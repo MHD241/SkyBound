@@ -1,5 +1,4 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js';
-import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/GLTFLoader.js';
 
 const app=document.getElementById('app');
 const scene=new THREE.Scene();
@@ -55,14 +54,20 @@ for(const z of[-920,0,920]){
 const connector=new THREE.Mesh(new THREE.BoxGeometry(420,34,1400),glassMat);connector.position.set(190,23,0);terminal.add(connector);
 terminal.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});
 
-const loader=new GLTFLoader(); const mixers=[];
+let loader=null; const mixers=[];
+async function getLoader(){
+  if(loader) return loader;
+  const mod=await import('https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/GLTFLoader.js');
+  loader=new mod.GLTFLoader();
+  return loader;
+}
 const loadbar=document.getElementById('loadbar'),loadtext=document.getElementById('loadtext');
 let visualLoads=0;
 function progress(label){visualLoads++; if(loadbar) loadbar.style.width=Math.min(100,18+visualLoads*16)+'%'; if(loadtext) loadtext.textContent=label; const st=document.getElementById('status'); if(st&&document.getElementById('menu')?.style.display!=='none') st.textContent=label+' · you can already start flying';}
 function dismissLoading(){const el=document.getElementById('loading');if(!el)return;el.style.opacity='0';setTimeout(()=>el.remove(),260)}
 // Never block the game on remote art. Show the playable scene almost immediately.
-setTimeout(dismissLoading,260);
-function loadGLB(url,{pos=[0,0,0],rot=0,scale=1,parent=scene,onLoad}={}){return new Promise(resolve=>loader.load(url,g=>{const o=g.scene;o.position.set(...pos);o.rotation.y=rot;o.scale.setScalar(scale);o.traverse(x=>{if(x.isMesh){x.castShadow=true;x.receiveShadow=true}});parent.add(o);onLoad?.(o,g);resolve(o)},undefined,e=>{console.warn('asset load failed',url,e);resolve(null)}))}
+setTimeout(dismissLoading,30);
+async function loadGLB(url,{pos=[0,0,0],rot=0,scale=1,parent=scene,onLoad}={}){const l=await getLoader();return new Promise(resolve=>l.load(url,g=>{const o=g.scene;o.position.set(...pos);o.rotation.y=rot;o.scale.setScalar(scale);o.traverse(x=>{if(x.isMesh){x.castShadow=true;x.receiveShadow=true}});parent.add(o);onLoad?.(o,g);resolve(o)},undefined,e=>{console.warn('asset load failed',url,e);resolve(null)}))}
 
 // Player aircraft appears instantly as a lightweight fallback, then swaps to the real A320.
 const aircraftRoot=new THREE.Group();scene.add(aircraftRoot);let playerVisual=null;
@@ -76,20 +81,22 @@ const fin=new THREE.Mesh(new THREE.BoxGeometry(.45,6,4.2),fbDark);fin.position.s
 for(const x of[-6.3,6.3]){const eng=new THREE.Mesh(new THREE.CylinderGeometry(1.45,1.6,4.5,18),fbDark);eng.rotation.x=Math.PI/2;eng.position.set(x,-1.5,1);fallbackPlane.add(eng)}
 fallbackPlane.position.y=2.7;fallbackPlane.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});
 function normalizeAircraft(o,targetLength=37){const box=new THREE.Box3().setFromObject(o);const size=box.getSize(new THREE.Vector3());let long=Math.max(size.x,size.z),s=targetLength/long;o.scale.multiplyScalar(s);if(size.x>size.z)o.rotation.y=-Math.PI/2;const box2=new THREE.Box3().setFromObject(o),center=box2.getCenter(new THREE.Vector3());o.position.sub(center);o.position.y+=-box2.min.y}
-loadGLB('https://raw.githubusercontent.com/amvlab/aircraft-models/main/models/A320_nologo.glb',{parent:aircraftRoot,onLoad:o=>{normalizeAircraft(o,37);playerVisual=o;fallbackPlane.visible=false}}).then(o=>o&&progress('High-detail A320 ready'));
-
-// Essential airport art streams in first. Nothing here blocks play.
-loadGLB('https://cdn.3dassets.dev/assets/26087/v1/model.glb',{pos:[580,0,-540],scale:3.0,rot:-.15}).then(o=>o&&progress('Control tower ready'));
-loadGLB('https://cdn.3dassets.dev/assets/26073/v1/model.glb',{pos:[700,0,0],scale:2.2,rot:-Math.PI/2}).then(o=>o&&progress('Main jet bridge ready'));
-// Secondary scenery is deliberately delayed so it cannot slow startup.
-setTimeout(()=>loadGLB('https://cdn.3dassets.dev/assets/26094/v1/model.glb',{pos:[675,0,450],scale:1.45,rot:-Math.PI/2}).then(o=>o&&progress('Ground equipment ready')),1800);
-setTimeout(()=>loadGLB('https://cdn.3dassets.dev/assets/26095/v1/model.glb',{pos:[2000,0,-1450],scale:2.2,rot:Math.PI/2}).then(o=>o&&progress('Support compound ready')),3200);
-for(const z of[-920,920])setTimeout(()=>loadGLB('https://cdn.3dassets.dev/assets/26073/v1/model.glb',{pos:[700,0,z],scale:2.2,rot:-Math.PI/2}),2400+Math.abs(z));
+let hdStarted=false;
+function startHDAssets(){
+  if(hdStarted)return;hdStarted=true;
+  if('requestIdleCallback' in window){
+    requestIdleCallback(()=>loadGLB('https://raw.githubusercontent.com/amvlab/aircraft-models/main/models/A320_nologo.glb',{parent:aircraftRoot,onLoad:o=>{normalizeAircraft(o,37);playerVisual=o;fallbackPlane.visible=false}}).then(o=>o&&progress('High-detail A320 ready')),{timeout:3500});
+  }else setTimeout(()=>loadGLB('https://raw.githubusercontent.com/amvlab/aircraft-models/main/models/A320_nologo.glb',{parent:aircraftRoot,onLoad:o=>{normalizeAircraft(o,37);playerVisual=o;fallbackPlane.visible=false}}).then(o=>o&&progress('High-detail A320 ready')),1800);
+  setTimeout(()=>loadGLB('https://cdn.3dassets.dev/assets/26087/v1/model.glb',{pos:[580,0,-540],scale:3.0,rot:-.15}).then(o=>o&&progress('Control tower ready')),4500);
+  setTimeout(()=>loadGLB('https://cdn.3dassets.dev/assets/26073/v1/model.glb',{pos:[700,0,0],scale:2.2,rot:-Math.PI/2}).then(o=>o&&progress('Main jet bridge ready')),6500);
+}
+// The HTML/menu is usable immediately. HD assets are requested only after the first frame settles.
+setTimeout(startHDAssets,1200);
 
 // AI traffic is lazy: no network cost until the player actually starts.
 const ai=[];let trafficStarted=false;
 async function addAI(url,x,z,heading,length=36){const root=new THREE.Group();root.position.set(x,0,z);root.rotation.y=heading;scene.add(root);const o=await loadGLB(url,{parent:root,onLoad:q=>normalizeAircraft(q,length)});if(o)ai.push({root,phase:Math.random()*10,speed:7+Math.random()*2});else scene.remove(root);return o}
-function startTraffic(){if(trafficStarted)return;trafficStarted=true;setTimeout(()=>addAI('https://raw.githubusercontent.com/amvlab/aircraft-models/main/models/B737_nologo.glb',30,780,Math.PI,39),400);setTimeout(()=>addAI('https://raw.githubusercontent.com/amvlab/aircraft-models/main/models/B787_nologo.glb',230,-1000,0,57),2600)}
+function startTraffic(){if(trafficStarted)return;trafficStarted=true;setTimeout(()=>addAI('https://raw.githubusercontent.com/amvlab/aircraft-models/main/models/B737_nologo.glb',30,780,Math.PI,39),1400)}
 
 // Physics — responsive conventional jet, no exaggerated stubbornness
 const state={x:-330,y:2.8,z:1450,heading:Math.PI,pitch:0,bank:0,speed:0,vs:0,throttle:.35,grounded:true};

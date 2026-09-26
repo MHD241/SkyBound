@@ -14,3 +14,6 @@ Upload the folder contents to GitHub Pages. No build step is required.
 
 ## v11.1
 This update prioritizes short runway waits, fast pushback, and better-looking landing-light glow.
+
+## Rapid airport operations
+This build uses high-throughput AI traffic. NPC aircraft taxi and clear runways quickly. Player arrivals are priority traffic, and Northpoint may assign runway 36L to avoid a long 36R wait.

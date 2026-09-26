@@ -12,3 +12,6 @@ This is the current self-contained Skybound build based on the renderer that is 
 - GitHub Pages ready
 
 Upload the contents of this folder to the repository root.
+
+## v9 world scale
+Northpoint and Coral Bay are now separated by roughly 100 km and sit on country-scale landmasses. Northpoint AI traffic is split across 36R and 36L to reduce player waiting time.

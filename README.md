@@ -1,51 +1,25 @@
-# Skybound — 3D Flight Simulator
+# Skybound — GitHub Pages build
 
-A standalone browser build of **Skybound**. No build step, package manager, external assets, or API keys are required.
+This is the upgraded realism build of Skybound. It is static and can be hosted directly on GitHub Pages.
 
-## Run locally
+## Deploy
+1. Upload **the contents of this folder** to the root of your GitHub repository.
+2. In **Settings → Pages**, choose **Deploy from a branch**.
+3. Choose the branch containing these files and `/ (root)`.
+4. Open the Pages URL after deployment.
 
-Open `index.html` in a modern desktop browser. For the most reliable browser security behaviour, you can also serve the folder with any tiny static server, for example:
+No npm install, server, database, or build command is required.
 
-```bash
-python3 -m http.server 8000
-```
+## What changed
+- heavier, speed-sensitive flight controls and aircraft inertia
+- simulated turbine spool rather than instant engine response
+- flap/gear/turn drag and bank-angle stall penalty
+- tighter stable-landing envelope
+- additional runway threshold, aiming, touchdown and rubber markings
+- approach lighting
+- service equipment, apron lines and additional hangar massing
+- less arcade-like NPC movement
+- refined haze, exposure and ready-screen camera
+- external presentation CSS for easier future editing
 
-Then open `http://localhost:8000`.
-
-## Publish with GitHub Pages
-
-1. Create a new GitHub repository.
-2. Upload the contents of this ZIP to the repository root.
-3. In GitHub, open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select your main branch and `/ (root)`, then save.
-
-`index.html` is self-contained, so GitHub Pages does not need a build process.
-
-## Polish v2 changes
-
-- More responsive yaw and roll authority.
-- Faster turning while keeping the visible banking transition smoother.
-- Reduced airport traffic density and shorter runway queues.
-- Faster NPC taxi, line-up, takeoff, approach, rollout, and taxi-in flow.
-- Shorter runway separation/turnaround delays.
-- More detailed island terrain with improved relief and shoreline/terrain colour variation.
-- Foliage distributed across both Northpoint and Coral Bay instead of being concentrated around one island.
-- Clouds distributed across both islands and the inter-island route, with subtle movement.
-- Cleaner start menu and a less intrusive in-flight interface.
-- No new external dependencies or downloaded asset packs.
-
-## Controls
-
-The in-game **Flight controls** button shows the current keyboard controls. The existing Skybound ATC, passenger/career, camera, collision, and airport systems remain in the build.
-
-## Notes
-
-This repository contains the ready-to-run bundled game. Keep a copy of the ZIP before making major edits so you always have a stable baseline.
-
-## Latest polish pass
-This package includes an extra visual hotfix focused on the GitHub Pages build:
-- cleaner airport ground rendering
-- improved menu framing
-- smaller in-world airport labels
-- better ready-screen layout
+See `docs/REALISM.md` for design notes and remaining differences from a full simulator.

@@ -1,13 +1,8 @@
-# Skybound Self-Contained v6
+# Skybound Known-Working v7
 
-Recovery build using the last known-good self-contained Skybound rendering engine.
+This recovery build is based on the exact self-contained Skybound HTML bundle that previously rendered successfully on the user's GitHub Pages site.
 
-- No CDN JavaScript
-- No external model loader
-- No service worker
-- No build step
-- GitHub Pages ready
+## Upload
+Delete the old repository files and upload the contents of this folder. Then open `reset.html` once. It clears old service workers/browser caches and redirects to the game with a unique cache-busting URL.
 
-Upload the contents of this folder to the repository root.
-
-If an older experimental build was previously hosted, replace the repository contents rather than merging folders.
+No CDN, npm, external model loader, or build step is required.

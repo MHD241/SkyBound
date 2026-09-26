@@ -26,3 +26,9 @@
 - Reduced visual weight of the top bar and secondary HUD panels.
 - Tightened quick-start controls and spacing.
 - Added responsive cleanup for narrower screens.
+
+## Visual hotfix v3
+- Fixed the ugly dark apron/terminal artefacts by softening shadows and stopping thin runway/apron slabs from receiving harsh shadow acne.
+- Improved the ready-screen camera framing so the airport preview looks closer and less flat.
+- Reduced oversized in-world labels for terminals/taxiway signage.
+- Moved the navigation panel away from the main start card for a cleaner menu layout.

@@ -42,3 +42,10 @@ The in-game **Flight controls** button shows the current keyboard controls. The 
 ## Notes
 
 This repository contains the ready-to-run bundled game. Keep a copy of the ZIP before making major edits so you always have a stable baseline.
+
+## Latest polish pass
+This package includes an extra visual hotfix focused on the GitHub Pages build:
+- cleaner airport ground rendering
+- improved menu framing
+- smaller in-world airport labels
+- better ready-screen layout

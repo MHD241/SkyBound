@@ -1,22 +1,7 @@
-# Skybound Metropolis v11
+# Skybound Passenger Journey v12
 
-GitHub Pages-ready build based on the stable self-contained renderer.
+GitHub Pages ready. Upload the files in this folder to the repository root.
 
-## New in v11
-- Aircraft landing lights, including AI landing-light points.
-- Expandable navigation map: click the NAVIGATION header to expand/collapse.
-- 38% stronger airborne ground-motion speed while the indicated airspeed keeps the existing scale.
-- Passenger Mode: tickets cost 900 Sky Credits; AI flies the sector while you control the camera.
-- Country-wide urbanisation: 14 urban centres per country, dense city blocks, skyscraper cores, expanded road network, hundreds of moving cars, and emissive city lights.
-- Existing pilot career/credits remain stored in the browser.
+Passenger Mode now launches a separate first-person airport journey: check-in, bag drop, security, gate scan, jetbridge boarding, seat/IFE, autonomous pushback/taxi/takeoff/flight/landing/taxi-to-gate, disembarkation, arrivals, baggage reclaim, and return to menu.
 
-Upload the folder contents to GitHub Pages. No build step is required.
-
-## v11.1
-This update prioritizes short runway waits, fast pushback, and better-looking landing-light glow.
-
-## Rapid airport operations
-This build uses high-throughput AI traffic. NPC aircraft taxi and clear runways quickly. Player arrivals are priority traffic, and Northpoint may assign runway 36L to avoid a long 36R wait.
-
-## Developer wallet
-This testing build displays unlimited Sky Credits (∞) so Passenger Mode can be tested without grinding credits. Ticket prices remain visible, but fares are not deducted in this build.
+Developer credits remain unlimited for testing.

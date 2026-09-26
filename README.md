@@ -18,3 +18,7 @@ The game loads Three.js and the GLB assets over HTTPS, so the published page nee
 
 ## Asset licensing
 See `ASSET_LICENSES.md`.
+
+
+## v4 blank-screen fix
+This build removes the old service worker, uses versioned game files, and has multiple renderer fallbacks. If upgrading from an older build, replace every file in the repository rather than only index.html.

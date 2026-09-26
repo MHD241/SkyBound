@@ -7,3 +7,5 @@
 - Added textured concrete/asphalt, runway markings, taxiway markings and approach lights.
 - Replaced sluggish handling with a conventional responsive passenger-jet control model.
 - Added drag orbit camera, wheel zoom and tower camera.
+
+- v4: removed stale service-worker caching, versioned JS/CSS assets, added Three.js and GLTFLoader fallback sources, and added visible renderer-failure diagnostics.

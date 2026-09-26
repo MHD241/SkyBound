@@ -1,8 +1,18 @@
 # Changelog
 
-## MSFS-style realism pass v4
-- Reworked aircraft physics for inertia, engine spool, configuration drag and bank-dependent stall behaviour.
-- Added airport runway/touchdown details, rubber marks, approach lights, service equipment and additional buildings.
-- Refined atmospheric visibility, exposure and start-camera framing.
-- Preserved the existing ATC, traffic, two-airport route, passengers, cameras and career flow.
-- Split presentation overrides into `assets/skybound-pro.css`.
+## Studio Build
+- major Northpoint airport environment rebuild
+- glass terminal façades, mullions and rooftop equipment
+- detailed gate/stand markings and stop bars
+- ground-service vehicles and baggage/fuel equipment
+- high-mast apron lighting
+- maintenance hangars and service campus
+- landside road/parking detail and airport fencing
+- denser taxiway/runway visual lighting cues
+- runway shoulder/rubber/PAPI-style detail
+- JX-200 cabin/cockpit glazing and engine-face detail
+- aircraft beacon and navigation lights
+- cinematic startup/loading presentation
+- premium menu/HUD styling pass
+- atmosphere and camera refinements
+- retained prior flight-model realism and faster AI traffic flow

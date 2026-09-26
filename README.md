@@ -11,3 +11,6 @@ GitHub Pages-ready build based on the stable self-contained renderer.
 - Existing pilot career/credits remain stored in the browser.
 
 Upload the folder contents to GitHub Pages. No build step is required.
+
+## v11.1
+This update prioritizes short runway waits, fast pushback, and better-looking landing-light glow.

@@ -42,3 +42,5 @@ body:before{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;opa
 .world canvas{filter:saturate(1.04) contrast(1.075) brightness(.985)!important}
 .is-ready .briefing{background:linear-gradient(145deg,rgba(2,9,14,.91),rgba(7,20,29,.77))!important;border-color:rgba(230,244,246,.16)!important}
 @media(max-width:700px){.camera-drag-hint{top:68px;font-size:7px;white-space:nowrap}.camera-drag-hint span:nth-of-type(2),.camera-drag-hint b:last-of-type{display:none}}
+
+#studio-loader{display:none!important}

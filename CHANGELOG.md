@@ -1,11 +1,10 @@
-# Real Assets Edition
+# Changelog
 
-- Replaced the homemade player aircraft with a real A320 GLB mesh.
-- Added real B737 and B787 GLB traffic aircraft.
-- Added real control tower, jet bridge, turnaround and support-compound GLB assets.
-- Rebuilt terminal architecture around curved roofs and glass curtain walls.
-- Added textured concrete/asphalt, runway markings, taxiway markings and approach lights.
-- Replaced sluggish handling with a conventional responsive passenger-jet control model.
-- Added drag orbit camera, wheel zoom and tower camera.
-
-- v4: removed stale service-worker caching, versioned JS/CSS assets, added Three.js and GLTFLoader fallback sources, and added visible renderer-failure diagnostics.
+## v5 Safari-safe runtime
+- Removed cross-origin JavaScript module imports from core startup.
+- Three.js core now loads as a classic script with a second CDN fallback.
+- GLTFLoader is lazy-loaded only after the base 3D scene can run.
+- Replaced unsupported fallback aircraft CapsuleGeometry for older Three.js compatibility.
+- Added visible startup error state.
+- Added automatic local `fallback.html` using the last known bundled renderer if the new runtime cannot start.
+- Versioned app/CSS filenames to bypass stale GitHub/browser caches.

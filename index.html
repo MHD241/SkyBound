@@ -5,16 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Skybound — Real Assets Edition</title>
   <meta name="description" content="Skybound 3D flight simulator with real aircraft and airport GLB assets." />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
-  <link rel="stylesheet" href="./assets/style-v4.css" />
+    <link rel="stylesheet" href="./assets/style-v5.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23081720'/><path d='M8 35 55 14 38 50 31 37 8 35Z' fill='%23baf06f'/></svg>">
 </head>
 <body>
   <div id="app"></div>
-  <div id="loading" style="display:none"><div class="loader-card"><div class="logo">SKYBOUND</div><div class="sub">REAL ASSETS · FIXED BUILD</div><div class="bar"><span id="loadbar"></span></div><div id="loadtext">Starting Skybound… high-detail models will stream in after the scene appears</div></div></div>
+  <div id="loading" style="display:none"><div class="loader-card"><div class="logo">SKYBOUND</div><div class="sub">REAL ASSETS · SAFARI FIX</div><div class="bar"><span id="loadbar"></span></div><div id="loadtext">Starting Skybound… high-detail models will stream in after the scene appears</div></div></div>
   <header class="topbar">
-    <div class="brand"><div class="mark">✈</div><div><b>SKYBOUND</b><small>REAL ASSETS · FIXED BUILD</small></div></div>
+    <div class="brand"><div class="mark">✈</div><div><b>SKYBOUND</b><small>REAL ASSETS · SAFARI FIX</small></div></div>
     <div class="airport"><span class="dot"></span> NORTHPOINT INTERNATIONAL <i>RWY 36</i></div>
     <div class="top-actions"><button id="cameraBtn">CAMERA · CHASE</button><button id="resetBtn">RESET</button></div>
   </header>
@@ -22,7 +20,7 @@
   <aside id="menu" class="menu-card">
     <div class="eyebrow">REALISTIC AIRPORT BUILD</div>
     <h1>Ready for<br><em>departure.</em></h1>
-    <p>Real aircraft assets with a fail-safe 3D renderer. No stale service-worker cache can blank the airport.</p>
+    <p>Safari-safe 3D core: the airport and aircraft render before high-detail models are requested.</p>
     <div class="route"><div><b>NPT</b><span>Northpoint</span></div><strong>→</strong><div><b>CBY</b><span>Coral Bay</span></div></div>
     <button id="flyBtn" class="primary">START AT RUNWAY 36</button>
     <div class="hints"><span>Drag camera</span><span>Scroll zoom</span><span>Arrows fly</span><span>W/S throttle</span></div>
@@ -39,11 +37,24 @@
 
   <div class="status" id="status">Drag anywhere to orbit · mouse wheel to zoom · double-click to reset view</div>
   <script>document.documentElement.classList.add('ui-ready');</script>
-  <script type="module" src="./assets/app-v4.js"></script>
+  <script>
+window.__skybound3DLoaded=false;
+window.addEventListener('error',function(e){var st=document.getElementById('status');if(st&&(!window.__skybound3DLoaded))st.textContent='3D startup error: '+(e.message||'renderer script failed');});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js" crossorigin="anonymous" onload="window.__skybound3DLoaded=true" onerror="var s=document.createElement('script');s.src='https://unpkg.com/three@0.128.0/build/three.min.js';s.onload=function(){window.__skybound3DLoaded=true;var a=document.createElement('script');a.src='./assets/app-v5.js?v=5';document.body.appendChild(a)};document.head.appendChild(s)"></script>
+<script>if(window.THREE){var a=document.createElement('script');a.src='./assets/app-v5.js?v=5';document.body.appendChild(a)}</script>
   <script>
 // Skybound v4: remove service workers from older builds so stale app.js can never mask a new upload.
 if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{});}
 if('caches' in window){caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('skybound-')).map(k=>caches.delete(k)))).catch(()=>{});}
+</script>
+<script>
+// Hard fail-safe: if the new scene has not produced a canvas quickly, use the known bundled renderer.
+setTimeout(function(){
+  if(!document.querySelector('#app canvas') && !location.search.includes('nofallback')){
+    location.replace('./fallback.html?from=v5');
+  }
+},3500);
 </script>
 </body>
 </html>

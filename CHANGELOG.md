@@ -1,10 +1,6 @@
-# Changelog
+# v6
 
-## v5 Safari-safe runtime
-- Removed cross-origin JavaScript module imports from core startup.
-- Three.js core now loads as a classic script with a second CDN fallback.
-- GLTFLoader is lazy-loaded only after the base 3D scene can run.
-- Replaced unsupported fallback aircraft CapsuleGeometry for older Three.js compatibility.
-- Added visible startup error state.
-- Added automatic local `fallback.html` using the last known bundled renderer if the new runtime cannot start.
-- Versioned app/CSS filenames to bypass stale GitHub/browser caches.
+- Reverted the rendering core to the last known-good embedded Skybound engine that rendered successfully in Safari.
+- Removed every startup CDN/model-loader dependency.
+- Added cache/service-worker cleanup for older experimental builds.
+- Added WebGL diagnostics page.

@@ -1,11 +1,13 @@
-# Skybound Safari-Safe v5
+# Skybound Self-Contained v6
 
-GitHub Pages-ready build. Upload the **contents** of this folder to the repository root.
+Recovery build using the last known-good self-contained Skybound rendering engine.
 
-## Startup design
-- Uses classic Three.js loading rather than cross-origin ES module imports, for Safari compatibility.
-- The base airport and fallback aircraft do not depend on GLB assets.
-- High-detail GLB assets load only after the scene is visible.
-- If the new renderer does not produce a WebGL canvas within 3.5 seconds, the page automatically opens `fallback.html`, the known bundled Skybound renderer.
+- No CDN JavaScript
+- No external model loader
+- No service worker
+- No build step
+- GitHub Pages ready
 
-No npm/build step is required.
+Upload the contents of this folder to the repository root.
+
+If an older experimental build was previously hosted, replace the repository contents rather than merging folders.

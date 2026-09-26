@@ -24,3 +24,8 @@
 - Player arrivals receive priority; Northpoint can reassign the player to runway 36L when 36R is busy.
 - Northpoint automatically switches a waiting player to 36L after about 25 seconds when available.
 - Target player landing-clearance wait is under one minute.
+
+## v11.2 Dev Credits
+- Developer wallet enabled for Passenger Mode testing.
+- Sky Credits display as ∞.
+- Passenger tickets still show their fare, but do not reduce the test wallet.

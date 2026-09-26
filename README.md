@@ -17,3 +17,6 @@ This update prioritizes short runway waits, fast pushback, and better-looking la
 
 ## Rapid airport operations
 This build uses high-throughput AI traffic. NPC aircraft taxi and clear runways quickly. Player arrivals are priority traffic, and Northpoint may assign runway 36L to avoid a long 36R wait.
+
+## Developer wallet
+This testing build displays unlimited Sky Credits (∞) so Passenger Mode can be tested without grinding credits. Ticket prices remain visible, but fares are not deducted in this build.

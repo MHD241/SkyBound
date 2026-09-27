@@ -1,7 +1,5 @@
-# Skybound Passenger Journey v12
+# Skybound Fleet & Gates v13
 
-GitHub Pages ready. Upload the files in this folder to the repository root.
+GitHub Pages ready: upload the contents of this folder.
 
-Passenger Mode now launches a separate first-person airport journey: check-in, bag drop, security, gate scan, jetbridge boarding, seat/IFE, autonomous pushback/taxi/takeoff/flight/landing/taxi-to-gate, disembarkation, arrivals, baggage reclaim, and return to menu.
-
-Developer credits remain unlimited for testing.
+Changes: faster-feeling regional world, JX-90 Regional aircraft option, selectable departure gate, and dynamic ATC arrival-gate assignment.

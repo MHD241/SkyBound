@@ -1,10 +1,8 @@
-# v12 Passenger Journey
-
-- Rebuilt Passenger Mode as a separate playable first-person airport world.
-- Walk through check-in, bag drop, security, boarding gate, jetbridge, and aircraft boarding.
-- Added boarding pass and baggage journey.
-- Added autonomous passenger flight sequence: pushback, taxi, lineup, takeoff, climb, cruise, descent, approach, landing, runway exit, taxi-in, park, jetbridge.
-- Added window seat and interactive IFE.
-- Added Flight screen, Flappy Block and Ping Pong mini-games.
-- Added arrival terminal, baggage reclaim, and automatic return to menu after luggage collection.
-- Infinite developer credits preserved for testing.
+# v13
+- Coral Bay moved closer: route reduced from roughly 105 km to roughly 72 km.
+- Airborne world-motion multiplier increased from 1.38x to 1.85x while indicated airspeed stays unchanged.
+- Added JX-90 Regional aircraft option with shorter visual proportions and separate performance/handling values.
+- Added departure gate selector for A01-C16.
+- NPC gate seeding now avoids the selected player departure gate.
+- Ground dynamically assigns a free arrival gate after landing rather than keeping a reserved/fixed player gate.
+- Passenger boarding pass reflects the selected departure gate.

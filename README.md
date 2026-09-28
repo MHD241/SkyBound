@@ -1,12 +1,5 @@
-# Skybound Fleet & Gates v13.2 — Safari Boot Fix
+# Skybound Urban Supersonic v14
 
-Built from v13.1 with a Safari-safe boot path.
+GitHub Pages-ready, self-contained build based on the working v13.2 Safari baseline.
 
-Changes:
-- aircraft/gate globals initialized before the module bundle
-- removed MutationObserver setup loop entirely
-- rewrote ambiguous minified numeric ternaries into explicit Safari-safe expressions
-- added an early on-screen startup error reporter and 5-second mount watchdog
-- keeps v13 route, aircraft, gate and visual-speed changes
-
-Upload `index.html` at the repository root.
+Highlights: three countries, restored sea gaps, dense high-rise urban coverage, Grand Meridian mega-hub, selectable Concorde with supersonic physics, manual COM1 ATC panel, layered jet audio, optional faint ambient music, and raised runway/taxi surfaces to reduce z-fighting.

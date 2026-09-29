@@ -1,11 +1,5 @@
-# v15
-- New full-screen Play menu before the simulator.
-- Interactive world map with Northpoint, Coral Bay, and Supersonic Island.
-- Supersonic Island moved into its own restricted selection flow; only Concorde may spawn there.
-- Clickable airport gate map instead of typing/selecting a gate number.
-- New hangar aircraft-selection screen before spawning.
-- Added configurable autopilot controls for heading, altitude, and speed.
-- Added auto-land / landing-assist control.
-- Added minimap + / - zoom controls and follow-aircraft mode.
-- Added fictional two-fighter restricted-airspace interceptor visual response for normal jets.
-- Renamed visible Grand Meridian / Meridian references to Supersonic Island while keeping the underlying airport code for compatibility.
+# v15.1
+- Removes the old "Cleared for takeoff" briefing panel after spawning.
+- Keeps the new interactive preflight flow only.
+- Rearranges ATC, COM radio, audio controls, autopilot, minimap and passenger panel so they do not overlap.
+- Adds responsive HUD spacing for shorter and narrower Safari windows.

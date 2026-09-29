@@ -4598,7 +4598,7 @@ let ne=[];for(let[e,t]of[[-18,16733519],[18,6156974]]){let n=new Im(new Hh(.14,6
  function renderGates(){document.getElementById('sb15AirportName').textContent=names[state.airport]||'Airport';let layer=document.getElementById('sb15GateLayer');layer.innerHTML='';state.gate=null;document.getElementById('sb15GateNext').disabled=true;let gates=[];for(let i=1;i<=16;i++)gates.push('A'+String(i).padStart(2,'0'));for(let i=1;i<=16;i++)gates.push('B'+String(i).padStart(2,'0'));for(let i=1;i<=16;i++)gates.push('C'+String(i).padStart(2,'0'));gates.forEach((g,i)=>{let col=Math.floor(i/16),row=i%16;let x=[19,50,81][col],y=48+(row%8)*5.5+(row>=8?4:0);if(row>=8)x += col===0?6:col===2?-6:5;let b=document.createElement('button');b.type='button';b.className='sb15-gate';b.textContent=g;b.style.left=x+'%';b.style.top=y+'%';b.onclick=()=>{state.gate=g;layer.querySelectorAll('.sb15-gate').forEach(z=>z.classList.toggle('selected',z===b));document.getElementById('sb15GateNext').disabled=false};layer.appendChild(b)})}
  document.getElementById('sb15GateNext').onclick=()=>show('hangar');
  root.querySelectorAll('[data-plane]').forEach(b=>b.onclick=()=>{state.plane=b.dataset.plane;root.querySelectorAll('[data-plane]').forEach(x=>x.classList.toggle('selected',x===b));let restricted=state.airport==='SSI'&&state.plane!=='CONCORDE';document.getElementById('sb15Restrict').classList.toggle('show',restricted);document.getElementById('sb15Spawn').disabled=restricted});
- document.getElementById('sb15Spawn').onclick=()=>{if(!state.airport||!state.gate||!state.plane)return;window.__skyboundAircraftChoice=state.plane;window.__skyboundGateChoice=state.gate;window.__skyboundAirportChoice=state.airport;let code=state.airport==='SSI'?'GMI':state.airport;let target=[...document.querySelectorAll('.airport-picker button')].find(b=>(b.textContent||'').includes(code));if(target)target.click();root.hidden=true;setTimeout(()=>{const ready=document.querySelector('.briefing-footer button, .briefing button');if(ready&&/fly|start|takeoff/i.test(ready.textContent||''))ready.click()},150)};
+ document.getElementById('sb15Spawn').onclick=()=>{if(!state.airport||!state.gate||!state.plane)return;window.__skyboundAircraftChoice=state.plane;window.__skyboundGateChoice=state.gate;window.__skyboundAirportChoice=state.airport;let code=state.airport==='SSI'?'GMI':state.airport;let target=[...document.querySelectorAll('.airport-picker button')].find(b=>(b.textContent||'').includes(code));if(target)target.click();root.hidden=true;document.body.classList.add('sb15-inflight');const clearLegacy=()=>{document.querySelectorAll('.briefing,.briefing-card,.airport-picker').forEach(el=>{if(el.closest('#sb15-preflight'))return;el.style.display='none';el.setAttribute('aria-hidden','true')})};clearLegacy();setTimeout(()=>{const ready=[...document.querySelectorAll('.briefing-footer button, .briefing button')].find(b=>/fly|start|takeoff/i.test(b.textContent||''));if(ready)ready.click();clearLegacy()},180);setTimeout(clearLegacy,650)};
  // Rename the third country everywhere visible while preserving the underlying GMI code.
  setInterval(()=>{document.querySelectorAll('button,span,b,small,div').forEach(el=>{if(el.children.length===0&&/Grand Meridian|\bMeridian\b/.test(el.textContent||''))el.textContent=(el.textContent||'').replace(/Grand Meridian/g,'Supersonic Island').replace(/\bMeridian\b/g,'Supersonic Island')})},1500);
 })();
@@ -4624,5 +4624,49 @@ let ne=[];for(let[e,t]of[[-18,16733519],[18,6156974]]){let n=new Im(new Hh(.14,6
  }
 })();
 </script>
+
+
+<style id="skybound-v15-1-cleanflight-css">
+/* v15.1: after the interactive setup flow, show only the simulator HUD. */
+body.sb15-inflight .briefing,
+body.sb15-inflight .briefing-card,
+body.sb15-inflight .airport-picker{display:none!important;visibility:hidden!important;pointer-events:none!important}
+
+/* Desktop HUD zones: left = ATC/radio, right = audio/AP/map, bottom = instruments. */
+body.sb15-inflight .tower-panel{left:28px!important;top:195px!important;right:auto!important;max-height:300px!important;z-index:32!important}
+body.sb15-inflight .v14-radio{left:28px!important;top:auto!important;bottom:158px!important;width:335px!important;z-index:33!important}
+body.sb15-inflight .v14-audio{right:28px!important;top:198px!important;z-index:34!important}
+body.sb15-inflight #sb15-ap{right:28px!important;top:245px!important;width:250px!important;z-index:34!important}
+body.sb15-inflight .map-panel{right:28px!important;left:auto!important;bottom:158px!important;width:235px!important;max-width:235px!important;z-index:33!important}
+body.sb15-inflight .map-panel.map-expanded{right:28px!important;left:auto!important;bottom:158px!important;width:min(620px,64vw)!important;max-width:none!important;z-index:70!important}
+body.sb15-inflight .passenger-panel{right:292px!important;top:245px!important;width:225px!important;max-height:230px!important;z-index:32!important}
+body.sb15-inflight .passenger-flight-banner{top:190px!important}
+
+/* Keep the camera chip and Mach display away from other controls. */
+body.sb15-inflight .v14-mach{top:190px!important}
+
+@media (max-height:820px) and (min-width:901px){
+  body.sb15-inflight .tower-panel{top:175px!important;max-height:245px!important}
+  body.sb15-inflight .v14-radio{bottom:148px!important;width:300px!important;padding:9px!important}
+  body.sb15-inflight #sb15-ap{top:225px!important;width:225px!important;padding:9px!important}
+  body.sb15-inflight .map-panel{bottom:148px!important;width:205px!important;max-width:205px!important}
+  body.sb15-inflight .passenger-panel{right:270px!important;top:225px!important;width:205px!important;max-height:200px!important}
+}
+@media (max-width:900px){
+  body.sb15-inflight .tower-panel{left:10px!important;top:150px!important;width:250px!important;max-height:235px!important}
+  body.sb15-inflight .v14-radio{left:10px!important;bottom:145px!important;width:255px!important}
+  body.sb15-inflight .v14-audio{right:10px!important;top:150px!important}
+  body.sb15-inflight #sb15-ap{right:10px!important;top:198px!important;width:205px!important}
+  body.sb15-inflight .map-panel{right:10px!important;bottom:145px!important;width:190px!important;max-width:190px!important}
+  body.sb15-inflight .passenger-panel{display:none!important}
+  body.sb15-inflight .v14-mach{top:150px!important}
+}
+@media (max-width:620px){
+  body.sb15-inflight .tower-panel{width:205px!important;max-height:190px!important}
+  body.sb15-inflight .v14-radio{width:210px!important;font-size:8px!important}
+  body.sb15-inflight #sb15-ap{width:180px!important;font-size:8px!important}
+  body.sb15-inflight .map-panel{width:160px!important;max-width:160px!important}
+}
+</style>
 
 </body></html>

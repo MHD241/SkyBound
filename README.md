@@ -1,7 +1,5 @@
-# Skybound v15 — Interactive World & Flight Assist
+# Skybound v15.1 — Clean Flight HUD
 
-Self-contained GitHub Pages build based on the working v14/v13.2 Safari-safe core.
+After the interactive preflight flow (airport → gate → hangar → aircraft), the legacy briefing/menu is removed and the simulator opens directly into the flight view.
 
-New flow: Play → interactive world map → airport → clickable gate map → hangar → spawn.
-
-Adds Supersonic Island restrictions, interceptor visual response for normal jets, autopilot, autoland/landing assist, and interactive minimap zoom/follow controls.
+HUD panels are rearranged into non-overlapping zones for desktop and smaller Safari windows.

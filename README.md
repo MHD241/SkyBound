@@ -1,5 +1,7 @@
-# Skybound Urban Supersonic v14
+# Skybound v15 — Interactive World & Flight Assist
 
-GitHub Pages-ready, self-contained build based on the working v13.2 Safari baseline.
+Self-contained GitHub Pages build based on the working v14/v13.2 Safari-safe core.
 
-Highlights: three countries, restored sea gaps, dense high-rise urban coverage, Grand Meridian mega-hub, selectable Concorde with supersonic physics, manual COM1 ATC panel, layered jet audio, optional faint ambient music, and raised runway/taxi surfaces to reduce z-fighting.
+New flow: Play → interactive world map → airport → clickable gate map → hangar → spawn.
+
+Adds Supersonic Island restrictions, interceptor visual response for normal jets, autopilot, autoland/landing assist, and interactive minimap zoom/follow controls.

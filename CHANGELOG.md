@@ -1,8 +1,11 @@
-# v14
-- Northpoint/Coral Bay made smaller and closer; sea restored between landmasses.
-- Added Grand Meridian (GMI), a huge third hub country/airport.
-- Greatly increased building density/height and moving car population.
-- Added Concorde selection, Concorde-like delta-wing model and Mach-2-class performance.
-- Added manual COM1 ATC tuning with Ground/Tower/Departure/Approach frequencies.
-- Added enhanced synthesized turbine audio plus optional faint ambient music.
-- Raised runway/taxi pavement slightly above terrain to reduce z-fighting/shimmer.
+# v15
+- New full-screen Play menu before the simulator.
+- Interactive world map with Northpoint, Coral Bay, and Supersonic Island.
+- Supersonic Island moved into its own restricted selection flow; only Concorde may spawn there.
+- Clickable airport gate map instead of typing/selecting a gate number.
+- New hangar aircraft-selection screen before spawning.
+- Added configurable autopilot controls for heading, altitude, and speed.
+- Added auto-land / landing-assist control.
+- Added minimap + / - zoom controls and follow-aircraft mode.
+- Added fictional two-fighter restricted-airspace interceptor visual response for normal jets.
+- Renamed visible Grand Meridian / Meridian references to Supersonic Island while keeping the underlying airport code for compatibility.
